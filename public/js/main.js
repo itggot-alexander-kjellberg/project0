@@ -38,7 +38,8 @@ function showInfo(element) {
     var name = element.innerHTML;
     console.log(name);
     var el = document.querySelector(".personImg");
-    console.log(el);
-    
+    console.log(el); 
+    var namn = document.querySelector(".name");
+    namn.innerHTML = name;
     el.style.backgroundImage = `url('../img/students/${studentId}.jpg')`;
 }
