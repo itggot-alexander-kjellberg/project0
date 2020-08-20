@@ -36,26 +36,26 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 95vh;
-
+    
     .imgContainer{
         height: 100%;
-            display: flex;
-            align-items: flex-end;
-            width: 100%; 
-        }
-        .personImg {
-            height: 80%;
-            width: 80%;
-            background-image: url("../img/students/4.jpg");
-            box-shadow: 
-                0 4px 8px 0 rgba(0, 0, 0, 0.3),
-                0 6px 20px 0 rgba(0, 0, 0, 0.2);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: auto;
-        }
-
+        display: flex;
+        align-items: flex-end;
+        width: 100%; 
+    }
+    .personImg {
+        height: 80%;
+        width: 80%;
+        background-image: url("../img/students/4.jpg");
+        box-shadow: 
+        0 4px 8px 0 rgba(0, 0, 0, 0.3),
+        0 6px 20px 0 rgba(0, 0, 0, 0.2);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: auto;
+    }
+    
     .personText {
         background: #eeeeee;
     }
