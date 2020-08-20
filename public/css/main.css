@@ -56,7 +56,7 @@ button.add_student {
   display: none;
 }
 
-aside.student_form {
+form.student_form {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -70,10 +70,14 @@ aside.student_form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   top: 0;
 }
 
-aside.student_form input {
+form.student_form input {
   width: 300px;
   height: 50px;
 }

@@ -28,12 +28,17 @@ function autoHighlight(name_input) {
 }
 
 function student_add(){
-    var form = document.querySelector('aside.student_form');
+    var form = document.querySelector('form.student_form');
     form.classList.toggle('hide');
 }
 
 function trait(self){
+    var i = document.querySelectorAll('input.student_char').length + 1
     var el = document.createElement('input');
-    var parent = document.querySelector('aside.student_form')
-    parent.insertBefore(el, self.parentElement)
+    var parent = document.querySelector('form.student_form')
+
+    el.placeholder = "Character trait";
+    el.classList.add('student_char')
+    el.setAttribute('name', `char${i}`);
+    parent.insertBefore(el, self)
 }

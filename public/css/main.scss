@@ -41,7 +41,7 @@ button.add_student{
     visibility: hidden;
     display: none;
 }
-aside.student_form{
+form.student_form{
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -49,6 +49,7 @@ aside.student_form{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     top: 0;
 
     input{

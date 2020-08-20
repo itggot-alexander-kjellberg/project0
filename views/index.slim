@@ -10,7 +10,8 @@ div class="grid-container"
                 h1 Alexander X
             div class="imgContainer"
                 div class="personImg"
-aside.student_form.hide
-    input type="text" placeholder="Name"
-    input type="text" placeholder="Character trait"
-    button.add_char onclick="trait(this)"
+form.student_form.hide method="post" action="/student_add"
+    input.student_add type="text" placeholder="Name" name="name"
+    input.student_char type="text" placeholder="Character trait" name="char1" 
+    button.add_char onclick="trait(this);" type="button" Add trait
+    button type="submit" Add student!
