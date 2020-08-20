@@ -29,6 +29,11 @@ main {
     grid-area: list;
     display: flex;
     flex-direction: column;
+
+    .students:hover {
+        font-weight: 700;
+        cursor: pointer;
+    }
 }
 
 .personInfo {
@@ -46,7 +51,7 @@ main {
         .personImg {
             height: 80%;
             width: 80%;
-            background-image: url("../img/students/4.jpg");
+            // background-image: url("../img/students/15.jpg");
             box-shadow: 
                 0 4px 8px 0 rgba(0, 0, 0, 0.3),
                 0 6px 20px 0 rgba(0, 0, 0, 0.2);

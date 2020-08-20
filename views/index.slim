@@ -3,7 +3,7 @@ div class="grid-container"
     main
         li class="personlist"
             -for person in @personer
-                a.students href="www.google.com" id="#{person.id}" #{person.name}
+                div class="students" onclick="showInfo(this)" id="#{person.id}" #{person.name}
             button.add_student onclick="student_add()" Add student!
         section class="personInfo"
             div class="personText"
