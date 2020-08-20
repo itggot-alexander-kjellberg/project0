@@ -6,4 +6,16 @@ class Dbhandler
         return db
     end
 
+    def self.orienter(type, arr)
+        answer = []
+
+        if type == :students
+            for student in arr do
+                answer << Student.new(student['id'], student['name'], nil)
+            end
+        end
+
+        return answer
+    end
+
 end

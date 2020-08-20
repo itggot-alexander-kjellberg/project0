@@ -3,7 +3,7 @@ div class="grid-container"
     main
         li class="personlist"
             -for person in @personer
-                a href="www.google.com" id="#{person[1]}" #{person[0]}
+                a.students href="www.google.com" id="#{person.id}" #{person.name}
         section class="personInfo"
             div class="personImg"
             div class="personText"

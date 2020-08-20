@@ -12,13 +12,26 @@ class Student < Dbhandler
 
     def self.get(id, db)
         if id == :all
-            db.execute('SELECT * FROM personer')
+            arr = db.execute('SELECT * FROM personer')
         else
-            db.execute('SELECT * FROM personer WHERE id = ?', id)
+            arr = db.execute('SELECT * FROM personer WHERE id = ?', id)
         end
+
+        return Dbhandler.orienter(:students, arr)
     end
     
     def self.search(name, db)
-        return db.execute('SELECT * FROM personer WHERE name LIKE ?', "%#{name}%")
+        arr = db.execute('SELECT * FROM personer WHERE name LIKE ?', "%#{name}%")
+
+        return Dbhandler.orienter(:students, arr)
+    end
+
+    def self.json_creator(x)
+        student = Hash.new
+        student[:name] = x.name
+        student[:id] = x.id
+        student[:char] = x.char
+
+        return student
     end
 end
