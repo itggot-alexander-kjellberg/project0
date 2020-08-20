@@ -1,22 +1,19 @@
 require 'json'
-
+require_relative 'models/dbhandler'
+require_relative 'models/students'
 class Site < Sinatra::Base
 
-    def getPeople()
-        return @db.execute("SELECT * FROM personer")
-    end
-
     before do
-        @db = SQLite3::Database.new('db/project0.db')
+        @db = Dbhandler.get
     end
 
     get '/' do
-        @personer = getPeople()
+        @personer = Student.get(:all, @db)
         slim :index 
     end
 
     post '/search_name/:name' do
-        names = @db.execute("SELECT * FROM personer WHERE name LIKE ?", "%#{params[:name]}%")
+        names = Student.search(params[:name], @db)
         return names.to_json
     end
 end
