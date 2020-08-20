@@ -1,15 +1,42 @@
 body {
   background-color: #ccc;
+  margin: 0;
 }
 
-.wrapper {
+.grid-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 30% 70%;
-      grid-template-columns: 30% 70%;
+  -ms-grid-columns: (1fr)[1];
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-areas: "search" "main";
+  -ms-grid-rows: 5vh 95vh;
+      grid-template-rows: 5vh 95vh;
+}
+
+.searchBar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: search;
+}
+
+main {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: main;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+      grid-template-areas: "list info" "list info";
+  -ms-grid-rows: 95vh;
+      grid-template-rows: 95vh;
 }
 
 .personlist {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: list;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,5 +44,22 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.personInfo {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+  grid-area: info;
+  display: -ms-grid;
+  display: grid;
+}
+
+.personInfo .personImg {
+  background: #dddddd;
+}
+
+.personInfo .personText {
+  background: #eeeeee;
 }
 /*# sourceMappingURL=main.css.map */

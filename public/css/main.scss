@@ -1,13 +1,45 @@
 body {
     background-color: #ccc;
+    margin: 0;
 }
 
-.wrapper{
+.grid-container{
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas: 
+    "search"
+    "main";
+    grid-template-rows: 5vh 95vh;
+}
+
+.searchBar {
+    grid-area: search;
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 
+    "list info"
+    "list info";
+    grid-template-rows: 95vh;
 }
 
 .personlist{
+    grid-area: list;
     display: flex;
     flex-direction: column;
+}
+
+.personInfo {
+    grid-area: info;
+    display: grid;
+
+    .personImg {
+        background: #dddddd;
+    }
+    .personText {
+        background: #eeeeee;
+    }
 }

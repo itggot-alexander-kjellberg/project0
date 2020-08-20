@@ -1,5 +1,9 @@
-input type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
-div class="wrapper"
-    li class="personlist"
-        -for person in @personer
-            a href="www.google.com" id="#{person[1]}" #{person[0]}
+div class="grid-container"
+    input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
+    main
+        li class="personlist"
+            -for person in @personer
+                a href="www.google.com" id="#{person[1]}" #{person[0]}
+        section class="personInfo"
+            div class="personImg"
+            div class="personText"
