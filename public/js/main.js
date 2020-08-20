@@ -35,7 +35,10 @@ function student_add(){
 function showInfo(element) {
     console.log(element);
     var studentId = element.id;
+    var name = element.innerHTML;
+    console.log(name);
     var el = document.querySelector(".personImg");
-    console.log(el)
+    console.log(el);
+    
     el.style.backgroundImage = `url('../img/students/${studentId}.jpg')`;
 }
