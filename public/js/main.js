@@ -26,3 +26,8 @@ function autoHighlight(name_input) {
     xhttp.open('POST' , `/search_name/${name_input}`)
     xhttp.send();
 }
+
+function student_add(){
+    var form = document.querySelector('aside.studentform');
+    form.classList.toggle('show');
+}
