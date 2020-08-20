@@ -1,10 +1,13 @@
 function autoHighlight(name_input) {
 
+    var students = document.querySelectorAll('.students');
     if(name_input == null || name_input == ''){
+        for(a of students){
+            a.style.backgroundColor = 'transparent';
+        }
         return;
     }
 
-    var students = document.querySelectorAll('.students');
     
     for(a of students){
         a.style.backgroundColor = 'transparent';
@@ -28,8 +31,18 @@ function autoHighlight(name_input) {
 }
 
 function student_add(){
-    var form = document.querySelector('aside.studentform');
-    form.classList.toggle('show');
+    var form = document.querySelector('form.student_form');
+    form.classList.toggle('hide');
+}
+
+function trait(self){
+    var el = document.createElement('input');
+    el.classList.add('student_char');
+    el.placeholder = 'Character trait'
+    var i = document.querySelectorAll('input.student_char').length;
+    el.setAttribute('name', `char${i}`);
+
+    self.parentNode.insertBefore(el, self);
 }
 
 function showInfo(element) {

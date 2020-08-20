@@ -25,11 +25,13 @@ class Site < Sinatra::Base
 
     post '/student_add' do
         name = params[:name]
-        for x in params.reject![:name] do 
-            p x
+        char = []
+
+        params.each do |key, value|
+            char << value
         end
 
-        p "#####"
+        traits = char.drop(1)
 
         redirect back
     end
