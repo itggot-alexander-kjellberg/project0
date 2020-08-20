@@ -1,4 +1,5 @@
 body {
+    font-family: 'Roboto', sans-serif;
     margin: 0;
 }
 
@@ -6,13 +7,13 @@ body {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-areas: 
-    "search"
     "main";
-    grid-template-rows: 5vh 95vh;
+    grid-template-rows: 100vh;
 }
 
 .searchBar {
     grid-area: search;
+    height: 3vh;
 }
 
 main {
@@ -29,9 +30,11 @@ main {
     grid-area: list;
     display: flex;
     flex-direction: column;
+    row-gap: 5px;
+    padding: 5%;
 
     .students:hover {
-        font-weight: 700;
+        text-decoration: underline;
         cursor: pointer;
     }
 }
@@ -40,7 +43,7 @@ main {
     grid-area: info;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 95vh;
+    grid-template-rows: 100vh;
 
     .imgContainer{
         height: 100%;
@@ -51,10 +54,10 @@ main {
         .personImg {
             height: 80%;
             width: 80%;
-            // background-image: url("../img/students/15.jpg");
             box-shadow: 
                 0 4px 8px 0 rgba(0, 0, 0, 0.3),
                 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+            background-image: url("../img/standarduser.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -62,7 +65,14 @@ main {
         }
 
     .personText {
+        padding: 5%;
         background: #eeeeee;
+
+        .name {
+            font-size: 200%;
+            text-decoration: underline;
+            font-weight: 500;
+        }
     }
 }
 

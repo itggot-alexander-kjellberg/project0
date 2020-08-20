@@ -1,13 +1,13 @@
 div class="grid-container"
-    input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
     main
         li class="personlist"
+            input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
             -for person in @personer
                 div class="students" onclick="showInfo(this)" id="#{person.id}" #{person.name}
             button.add_student onclick="student_add()" Add student!
         section class="personInfo"
             div class="personText"
-                h1 class="name" Alexander X
+                p class="name" elev.exe
             div class="imgContainer"
                 div class="personImg"
 form.student_form.hide method="post" action="/student_add"
