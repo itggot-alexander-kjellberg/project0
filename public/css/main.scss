@@ -46,7 +46,10 @@ main {
         .personImg {
             height: 80%;
             width: 80%;
-            background-image: url("students/16.jpg");
+            background-image: url("../img/students/4.jpg");
+            box-shadow: 
+                0 4px 8px 0 rgba(0, 0, 0, 0.3),
+                0 6px 20px 0 rgba(0, 0, 0, 0.2);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -54,6 +57,6 @@ main {
         }
 
     .personText {
-        background: red;
+        background: #eeeeee;
     }
 }
