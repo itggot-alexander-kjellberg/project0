@@ -1,1 +1,5 @@
-input type="text" placeholder="name" onchange="autoHighlight(this)"
+input type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
+div class="wrapper"
+    li class="personlist"
+        -for person in @personer
+            a href="www.google.com" id="#{person[1]}" #{person[0]}

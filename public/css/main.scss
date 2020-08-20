@@ -1,3 +1,13 @@
 body {
     background-color: #ccc;
 }
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.personlist{
+    display: flex;
+    flex-direction: column;
+}
