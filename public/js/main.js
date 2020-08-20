@@ -18,7 +18,7 @@ function autoHighlight(name_input) {
             
             for(student of answer){
                 var element = document.getElementById(student.id);
-                element.style.backgroundColor = 'rgba(255,0,0,0.4)';
+                element.style.backgroundColor = 'rgba(255,255,0,0.7)';
             }
         }
     };
