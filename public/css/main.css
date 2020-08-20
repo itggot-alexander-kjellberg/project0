@@ -31,6 +31,12 @@ main {
       grid-template-rows: 95vh;
 }
 
+button.add_student {
+  width: 60%;
+  margin: 10px auto 0 auto;
+  height: 25px;
+}
+
 .personlist {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
@@ -43,6 +49,33 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.hide {
+  visibility: hidden;
+  display: none;
+}
+
+aside.student_form {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+}
+
+aside.student_form input {
+  width: 300px;
+  height: 50px;
 }
 
 .personInfo {

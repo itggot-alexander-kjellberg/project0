@@ -25,11 +25,38 @@ main {
     grid-template-rows: 95vh;
 }
 
+button.add_student{
+    width: 60%;
+    margin: 10px auto 0 auto;
+    height: 25px;
+}
+
 .personlist{
     grid-area: list;
     display: flex;
     flex-direction: column;
 }
+
+.hide{
+    visibility: hidden;
+    display: none;
+}
+aside.student_form{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+
+    input{
+        width: 300px;
+        height: 50px;
+    }
+}
+
 
 .personInfo {
     grid-area: info;

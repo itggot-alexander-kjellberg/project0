@@ -28,6 +28,12 @@ function autoHighlight(name_input) {
 }
 
 function student_add(){
-    var form = document.querySelector('aside.studentform');
-    form.classList.toggle('show');
+    var form = document.querySelector('aside.student_form');
+    form.classList.toggle('hide');
+}
+
+function trait(self){
+    var el = document.createElement('input');
+    var parent = document.querySelector('aside.student_form')
+    parent.insertBefore(el, self.parentElement)
 }
