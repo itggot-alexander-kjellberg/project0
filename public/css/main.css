@@ -1,4 +1,5 @@
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 
@@ -7,19 +8,18 @@ body {
   display: grid;
   -ms-grid-columns: (1fr)[1];
       grid-template-columns: repeat(1, 1fr);
-      grid-template-areas: "search" "main";
-  -ms-grid-rows: 5vh 95vh;
-      grid-template-rows: 5vh 95vh;
+      grid-template-areas: "main";
+  -ms-grid-rows: 100vh;
+      grid-template-rows: 100vh;
 }
 
 .searchBar {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: search;
+  height: 3vh;
 }
 
 main {
-  -ms-grid-row: 2;
+  -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: main;
   display: -ms-grid;
@@ -43,10 +43,12 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  row-gap: 5px;
+  padding: 5%;
 }
 
 .personlist .students:hover {
-  font-weight: 700;
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -59,8 +61,8 @@ main {
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: 95vh;
-      grid-template-rows: 95vh;
+  -ms-grid-rows: 100vh;
+      grid-template-rows: 100vh;
 }
 
 .personInfo .imgContainer {
@@ -79,6 +81,7 @@ main {
   width: 80%;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  background-image: url("../img/standarduser.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -86,6 +89,13 @@ main {
 }
 
 .personInfo .personText {
+  padding: 5%;
   background: #eeeeee;
+}
+
+.personInfo .personText .name {
+  font-size: 200%;
+  text-decoration: underline;
+  font-weight: 500;
 }
 /*# sourceMappingURL=main.css.map */

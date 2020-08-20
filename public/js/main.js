@@ -33,13 +33,11 @@ function student_add(){
 }
 
 function showInfo(element) {
-    console.log(element);
     var studentId = element.id;
     var name = element.innerHTML;
-    console.log(name);
-    var el = document.querySelector(".personImg");
-    console.log(el); 
     var namn = document.querySelector(".name");
     namn.innerHTML = name;
-    el.style.backgroundImage = `url('../img/students/${studentId}.jpg')`;
+    var userImg = `url('../img/students/${studentId}.jpg')`;
+    var container = document.querySelector(".personImg");
+    container.style.backgroundImage = userImg;
 }
