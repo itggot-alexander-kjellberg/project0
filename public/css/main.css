@@ -1,5 +1,4 @@
 body {
-  background-color: #ccc;
   margin: 0;
 }
 
@@ -53,13 +52,34 @@ main {
   grid-area: info;
   display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 95vh;
+      grid-template-rows: 95vh;
+}
+
+.personInfo .imgContainer {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 100%;
 }
 
 .personInfo .personImg {
-  background: #dddddd;
+  height: 80%;
+  width: 80%;
+  background-image: url("students/16.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
 }
 
 .personInfo .personText {
-  background: #eeeeee;
+  background: red;
 }
 /*# sourceMappingURL=main.css.map */

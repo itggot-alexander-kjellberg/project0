@@ -1,5 +1,4 @@
 body {
-    background-color: #ccc;
     margin: 0;
 }
 
@@ -35,11 +34,26 @@ main {
 .personInfo {
     grid-area: info;
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 95vh;
 
-    .personImg {
-        background: #dddddd;
-    }
+    .imgContainer{
+        height: 100%;
+            display: flex;
+            align-items: flex-end;
+            width: 100%; 
+        }
+        .personImg {
+            height: 80%;
+            width: 80%;
+            background-image: url("students/16.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: auto;
+        }
+
     .personText {
-        background: #eeeeee;
+        background: red;
     }
 }
