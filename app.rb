@@ -22,5 +22,16 @@ class Site < Sinatra::Base
 
         return arr.to_json
     end
+
+    post '/student_add' do
+        name = params[:name]
+        for x in params.reject![:name] do 
+            p x
+        end
+
+        p "#####"
+
+        redirect back
+    end
 end
 
