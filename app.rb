@@ -1,6 +1,7 @@
 require 'json'
 require_relative 'models/dbhandler'
 require_relative 'models/students'
+
 class Site < Sinatra::Base
 
     before do
@@ -32,8 +33,7 @@ class Site < Sinatra::Base
         end
 
         traits = char.drop(1)
-
+        
         redirect back
     end
 end
-
