@@ -39,7 +39,7 @@ class Site < Sinatra::Base
     end
 
     post '/student_remove' do
-        
+        p params[:studentId]
     end
 
     post '/search_trait/:trait' do
