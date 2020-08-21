@@ -88,7 +88,7 @@ function studentTraitGenerator(id){
     xhttp.send();
 }
 
-function student_add(){
+function student_add_menu(){
     var form = document.querySelector('form.student_form');
     form.classList.toggle('hide');
 }

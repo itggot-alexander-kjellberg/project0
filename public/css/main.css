@@ -124,6 +124,20 @@ form.student_form .form-box {
   height: 600px;
   background-color: white;
   border-radius: 10px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 60px 1fr;
+      grid-template-rows: 60px 1fr;
+}
+
+form.student_form .form-box i.material-icons {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  margin: 10px 10px 0 auto;
+}
+
+form.student_form .form-box .cover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -139,13 +153,13 @@ form.student_form .form-box {
           flex-direction: column;
 }
 
-form.student_form input {
+form.student_form .form-box .cover input {
   width: 250px;
   height: 35px;
-  margin: 10px 0 10px 0;
+  margin: 5px 0 5px 0;
 }
 
-form.student_form button {
+form.student_form .form-box .cover button {
   width: 200px;
   margin-top: 15px;
 }
