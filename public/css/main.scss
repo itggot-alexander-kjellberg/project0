@@ -25,7 +25,7 @@ main {
     "list info";
     grid-template-rows: 95vh;
 }
-
+    
 .personlist{
     grid-area: list;
     display: flex;
@@ -59,7 +59,7 @@ main {
                 0 6px 20px 0 rgba(0, 0, 0, 0.2);
             background-image: url("../img/standarduser.png");
             background-size: cover;
-            background-position: center;
+
             background-repeat: no-repeat;
             margin: auto;
         }

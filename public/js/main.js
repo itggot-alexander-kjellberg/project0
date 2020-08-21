@@ -7,17 +7,16 @@ function autoHighlight(name_input) {
         }
         return;
     }
-
     
     for(a of students){
         a.style.backgroundColor = 'transparent';
     }
 
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             answer = JSON.parse(this.response);
+            console.log(answer);
             
             for(student of answer){
                 var element = document.getElementById(student.id);
@@ -30,9 +29,43 @@ function autoHighlight(name_input) {
     xhttp.send();
 }
 
+function trait_search(name_input){
+    var students = document.querySelectorAll('.students');
+    for(a of students){
+        a.style.backgroundColor = 'transparent';
+    }
+    
+    if(name_input == null || name_input == ''){
+        return;
+    }
+    
+    console.log(name_input)
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            answer = JSON.parse(this.response);
+            console.log(answer);
+            
+            for(student of answer){
+                var element = document.getElementById(student.id);
+                element.style.backgroundColor = 'rgba(0,0,255,0.7)';
+            }
+        }
+    };
+
+    xhttp.open('POST' , `/search_trait/${name_input}`);
+    xhttp.send();
+}
+
 function student_add(){
     var form = document.querySelector('form.student_form');
     form.classList.toggle('hide');
+}
+
+// hur kallar man på ruby/db_handler? Kan man?
+function student_remove(element) {
+    studentId = element.id;
 }
 
 function trait(self){
@@ -53,4 +86,6 @@ function showInfo(element) {
     var userImg = `url('../img/students/${studentId}.jpg')`;
     var container = document.querySelector(".personImg");
     container.style.backgroundImage = userImg;
+    var leButton = document.querySelector(".remove_student");
+    leButton.setAttribute("id", studentId);
 }

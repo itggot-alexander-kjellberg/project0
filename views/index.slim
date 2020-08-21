@@ -2,12 +2,15 @@ div class="grid-container"
     main
         li class="personlist"
             input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
+            input class="searchBar" type="text" placeholder="character traits" oninput="trait_search(this.value);" id="traitInput"
             -for person in @personer
                 div class="students" onclick="showInfo(this)" id="#{person.id}" #{person.name}
             button.add_student onclick="student_add()" Add student!
         section class="personInfo"
             div class="personText"
                 p class="name" elev.exe
+                form method="post" action="/student_remove"
+                    button type="submit" class="remove_student" Remove
             div class="imgContainer"
                 div class="personImg"
 form.student_form.hide method="post" action="/student_add"

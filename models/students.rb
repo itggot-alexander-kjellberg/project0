@@ -12,16 +12,16 @@ class Student < Dbhandler
 
     def self.get(id, db)
         if id == :all
-            arr = db.execute('SELECT * FROM personer')
+            arr = db.execute('SELECT * FROM students')
         else
-            arr = db.execute('SELECT * FROM personer WHERE id = ?', id)
+            arr = db.execute('SELECT * FROM students WHERE id = ?', id)
         end
 
         return Dbhandler.orienter(:students, arr)
     end
     
     def self.search(name, db)
-        arr = db.execute('SELECT * FROM personer WHERE name LIKE ?', "%#{name}%")
+        arr = db.execute('SELECT * FROM students WHERE name LIKE ?', "%#{name}%")
 
         return Dbhandler.orienter(:students, arr)
     end
@@ -33,5 +33,22 @@ class Student < Dbhandler
         student[:char] = x.char
 
         return student
+    end
+
+  def create(db)
+        db.execute('INSERT INTO students (name) VALUES(?)', @name)
+        id = db.execute('SELECT last_insert_rowid() FROM students;').first['last_insert_rowid()']
+
+        @char.each do |x|
+            exist = db.execute("SELECT * FROM traits WHERE name LIKE ?", x)
+            
+            if(exist == [])
+                db.execute("INSERT INTO traits (name) VALUES(?)", x)
+                char_id = db.execute("SELECT last_insert_rowid() FROM traits;").first['last_insert_rowid()']
+                db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", char_id, id)
+            else
+                db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", exist.first['id'], id)
+            end
+        end
     end
 end
