@@ -1,6 +1,8 @@
 require 'json'
 require_relative 'models/dbhandler'
 require_relative 'models/students'
+require_relative 'models/traits'
+require 'tmpdir'
 
 class Site < Sinatra::Base
 
@@ -35,17 +37,36 @@ class Site < Sinatra::Base
         student = Student.new(nil, params[:name], traits)
         student.create(@db)
 
+        #lite för bilden?
+        # bildFil = params[:studentImage]
+        # p bildFil
+
+        # temp_route = params["file"]["tempfile"]
+        # to_folder = "public/filesystem/#{Time.new.year}/#{Time.new.month}/#{Time.new.day}/"
+        # FileUtils.mkdir_p(to_folder)
+        # FileUtils.cp(temp_route, "#{to_folder}/#{params['file']['filename']}")
+
         redirect back
     end
 
     post '/student_remove' do
-        p params[:studentId]
+        idToRemove = params[:studentId]
+        Dbhandler.removeStudent(idToRemove)
+        redirect back
     end
 
     post '/search_trait/:trait' do
+
         trait = params[:trait]
         
-        return Trait.search(trait)
+        answer = Trait.search(trait, @db)
 
+        p answer
+        return answer.to_json
+    end
+
+    post '/student_trait_generator/:id' do
+        answer = Trait.get(params[:id], @db)
+        return answer.to_json
     end
 end

@@ -4,20 +4,22 @@ div class="grid-container"
             input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
             input class="searchBar" type="text" placeholder="character traits" oninput="trait_search(this.value);" id="traitInput"
             -for person in @personer
-                div class="students" onclick="showInfo(this)" id="#{person.id}" #{person.name}
+                div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id})" id="#{person.id}" #{person.name}
             button.add_student onclick="student_add()" Add student!
         section class="personInfo"
             div class="personText"
                 p class="name" elev.exe
-                form method="post" action="/student_remove"
-                    input type="hidden"
-                        name="studentID"
-                        value=""
+                aside.traitParent
+                form class="removeForm" method="post" action="/student_remove"
+                    input type="hidden" name="studentId" value="char-drag" id="removeId"
                     button type="submit" class="remove_student" Remove
             div class="imgContainer"
                 div class="personImg"
 form.student_form.hide method="post" action="/student_add"
-    input.student_add type="text" placeholder="Name" name="name"
-    input.student_char type="text" placeholder="Character trait" name="char0" 
-    button.add_char onclick="trait(this);" type="button" Add trait
-    button type="submit" Add student!
+    .form-box
+        input.student_add type="text" placeholder="Name" name="name"
+        input.student_char type="text" placeholder="Character trait" name="char0" 
+        button.add_char onclick="trait(this);" type="button" Add trait
+        // nedanstående rad är för att kanske kunna lägga in bilder också. 
+        input type="file" id="studentId" name="studentImage"
+        button type="submit" Add student!

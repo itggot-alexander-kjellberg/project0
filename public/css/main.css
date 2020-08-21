@@ -83,7 +83,6 @@ main {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   background-image: url("../img/standarduser.png");
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
   margin: auto;
 }
@@ -91,6 +90,12 @@ main {
 .personInfo .personText {
   padding: 5%;
   background: #eeeeee;
+}
+
+.personInfo .personText .name {
+  font-size: 200%;
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 form.student_form {
@@ -114,9 +119,30 @@ form.student_form {
           flex-direction: column;
 }
 
+form.student_form .form-box {
+  width: 400px;
+  height: 600px;
+  background-color: white;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 form.student_form input {
   width: 250px;
   height: 35px;
+  margin: 10px 0 10px 0;
 }
 
 form.student_form button {
@@ -127,11 +153,5 @@ form.student_form button {
 .hide {
   display: none;
   visibility: hidden;
-}
-  
-.personInfo.personText .name {
-  font-size: 200%;
-  text-decoration: underline;
-  font-weight: 500;
 }
 /*# sourceMappingURL=main.css.map */

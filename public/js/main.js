@@ -48,13 +48,43 @@ function trait_search(name_input){
             console.log(answer);
             
             for(student of answer){
-                var element = document.getElementById(student.id);
+                var element = document.getElementById(student.student_id);
                 element.style.backgroundColor = 'rgba(0,0,255,0.7)';
             }
         }
     };
 
     xhttp.open('POST' , `/search_trait/${name_input}`);
+    xhttp.send();
+}
+
+function studentTraitGenerator(id){
+
+
+    var parent = document.querySelector('aside.traitParent');
+    var old_kidz = parent.children;
+
+    while (parent.firstChild){
+        parent.removeChild(parent.lastChild);
+    }
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            
+            
+            answer = JSON.parse(this.response);
+            
+            for(trait of answer){
+                var el = document.createElement('p');
+                el.innerHTML = trait.name
+                console.log(trait.name)
+                parent.appendChild(el)
+            }
+        }
+    };
+
+    xhttp.open('POST' , `/student_trait_generator/${id}`);
     xhttp.send();
 }
 
@@ -88,4 +118,5 @@ function showInfo(element) {
     container.style.backgroundImage = userImg;
     var leButton = document.querySelector(".remove_student");
     leButton.setAttribute("id", studentId);
+    document.querySelector("#removeId").setAttribute("value", studentId);
 }
