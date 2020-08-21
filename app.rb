@@ -25,15 +25,27 @@ class Site < Sinatra::Base
     end
 
     post '/student_add' do
-        name = params[:name]
         char = []
-
+        
         params.each do |key, value|
             char << value
         end
 
         traits = char.drop(1)
-        
+        student = Student.new(nil, params[:name], traits)
+        student.create(@db)
+
         redirect back
+    end
+
+    post '/student_remove' do
+        
+    end
+
+    post '/search_trait/:trait' do
+        trait = params[:trait]
+        
+        return Trait.search(trait)
+
     end
 end
