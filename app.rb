@@ -51,7 +51,7 @@ class Site < Sinatra::Base
         end
 
         traits = char.drop(1)
-        student = Student.new(nil, params[:name], traits)
+        student = Student.new(nil, params[:name], traits, '3c')
         id = student.create(@db)
 
         if tmpdir != nil

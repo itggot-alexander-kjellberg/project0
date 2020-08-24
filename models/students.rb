@@ -37,7 +37,7 @@ class Student < Dbhandler
     end
 
     def create(db)
-        db.execute('INSERT INTO students (name) VALUES(?)', @name)
+        db.execute('INSERT INTO students (name,class) VALUES(?,?)', @name, @stud_class)
         id = db.execute('SELECT last_insert_rowid() FROM students;').first['last_insert_rowid()']
 
         @char.each do |x|
