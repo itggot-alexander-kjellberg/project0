@@ -10,12 +10,12 @@ div class="grid-container"
             div class="personText"
                 p class="name" elev.exe
                 aside.traitParent
-                form class="removeForm" method="post" action="/student_remove"
+                form class="removeForm" method="post" action="/student/remove"
                     input type="hidden" name="studentId" value="char-drag" id="removeId"
                     button type="submit" class="remove_student" Remove
             div class="imgContainer"
                 div class="personImg"
-form.student_form.hide method="post" action="/student_add" enctype="multipart/form-data"
+form.student_form.hide method="post" action="/student/add" enctype="multipart/form-data"
     .form-box
         i.material-icons onclick="student_add_menu()" close
         .cover
