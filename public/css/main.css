@@ -161,9 +161,9 @@ form.student_form .form-box .cover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -171,17 +171,57 @@ form.student_form .form-box .cover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 75%;
+  height: 100%;
+  margin: auto;
+}
+
+form.student_form .form-box .cover .char_box {
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form.student_form .form-box .cover .char_box p {
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+form.student_form .form-box .cover .char_box i {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto 5px auto 5px;
 }
 
 form.student_form .form-box .cover input {
-  width: 250px;
+  width: 100%;
   height: 35px;
   margin: 5px 0 5px 0;
 }
 
 form.student_form .form-box .cover button {
-  width: 200px;
+  width: 100%;
   margin-top: 15px;
+}
+
+form.student_form .form-box .cover button:last-child {
+  margin-top: auto;
+  margin-bottom: 30px;
+  height: 40px;
 }
 
 .hide {

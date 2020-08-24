@@ -5,11 +5,14 @@ div class="grid-container"
             input class="searchBar" type="text" placeholder="character traits" oninput="trait_search(this.value);" id="traitInput"
             ==slim :"partials/class_selection", locals: {classes: @classes, onchange: true}
             form method="post" action="/add_class"
-                input name="classname" placeholder="Class name"
+                input name="classname" placeholder="Class name" required="required"
                 button type="submit" New class!
             .student_box
-                -for person in @personer
-                    div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id}); student_edit_displayName()" id="#{person.id}" #{person.name}
+                -if @personer == []
+                    p There are no member in this class!
+                -else
+                    -for person in @personer
+                        div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id}); student_edit_displayName()" id="#{person.id}" #{person.name}
             button class="pointer add_student" onclick="student_add_menu()" Add student!
         section class="personInfo"
             div class="personText"
@@ -29,9 +32,13 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
         i class="material-icons pointer" onclick="student_add_menu()" close
         .cover
             input.student_add type="text" placeholder="Name" name="name"
-            input.student_char type="text" placeholder="Character trait" name="char0" 
+            .char_box
+                input.student_char type="text" placeholder="Character trait" name="char0" 
+                i.material-icons onclick="char_remove(this)" remove_circle_outline
             button class="pointer add_char" onclick="trait(this);" type="button" Add trait
-            ==slim :"partials/class_selection", locals: {classes: @classes, onchange: false}
+            .char_box
+                p Choose class for new student:
+                ==slim :"partials/class_selection", locals: {classes: @classes, onchange: false}
 
             // nedanstående rad är för att kanske kunna lägga in bilder också. 
             input type="file" id="studentId" name="file" accept="image/*"

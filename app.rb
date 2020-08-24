@@ -49,7 +49,9 @@ class Site < Sinatra::Base
         char = []
         
         params.each do |key, value|
-            char << value
+            if key != 'action' && key != 'class'
+                char << value
+            end
         end
 
         traits = char.drop(1)

@@ -111,7 +111,18 @@ function trait(self){
     var i = document.querySelectorAll('input.student_char').length;
     el.setAttribute('name', `char${i}`);
 
-    self.parentNode.insertBefore(el, self);
+    var char_box = document.createElement('div');
+    char_box.classList.add('char_box');
+
+    var icon = document.createElement('i');
+    icon.classList.add('material-icons')
+    icon.innerHTML = 'remove_circle_outline';
+    icon.setAttribute('onclick', 'char_remove(this)')
+
+    char_box.appendChild(el)
+    char_box.appendChild(icon)
+
+    self.parentNode.insertBefore(char_box, self);
 }
 
 // XML HTTP request till route på servern för att kolla om rätt bild finns
@@ -134,11 +145,21 @@ function class_change(self){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){     
             answer = JSON.parse(this.response);
-            
+            console.log(answer.length)
+
+
+
             var parent = document.querySelector('.student_box');
             
             while (parent.firstChild){
                 parent.removeChild(parent.lastChild);
+            }
+
+            if (answer.length == 0){
+                var child = document.createElement('p');
+                child.textContent = 'There are no memebers in this class!'
+                parent.appendChild(child);
+                return
             }
 
             for(student of answer){
@@ -166,4 +187,8 @@ function class_change(self){
 function student_edit_displayName(){
     var name = document.querySelector(".name").innerHTML;
     document.querySelector("#studentName").innerHTML = ("Edit "+name+"'s"+" traits")
+}
+
+function char_remove(self){
+    self.parentNode.parentNode.removeChild(self.parentNode)
 }
