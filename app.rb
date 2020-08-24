@@ -2,6 +2,7 @@ require 'json'
 require_relative 'models/dbhandler'
 require_relative 'models/students'
 require_relative 'models/traits'
+require_relative 'models/classes'
 require 'tmpdir'
 
 class Site < Sinatra::Base
@@ -12,6 +13,7 @@ class Site < Sinatra::Base
 
     get '/' do
         @personer = Student.get(:all, @db)
+        @classes = Classes.get(:all, @db)
         slim :index 
     end
 
@@ -51,7 +53,7 @@ class Site < Sinatra::Base
         end
 
         traits = char.drop(1)
-        student = Student.new(nil, params[:name], traits)
+        student = Student.new(nil, params[:name], traits, params[:class])
         id = student.create(@db)
 
         if tmpdir != nil
@@ -89,5 +91,11 @@ class Site < Sinatra::Base
         end
 
         return answer.to_json
+    end
+
+    post '/add_class' do
+        class_name = params[:classname]
+        @db.execute('INSERT INTO classes (name) VALUES (?)', class_name)
+        redirect back
     end
 end

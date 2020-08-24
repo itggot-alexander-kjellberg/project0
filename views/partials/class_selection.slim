@@ -1,0 +1,8 @@
+-if onchange == true
+    select name="class" onchange="class_change(this)"
+        -for stud_class in classes
+                option value="#{stud_class['name']}" #{stud_class['name']}
+-else
+    select name="class"
+        -for stud_class in classes
+            option value="#{stud_class['name']}" #{stud_class['name']}

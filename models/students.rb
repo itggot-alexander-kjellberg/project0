@@ -37,7 +37,9 @@ class Student < Dbhandler
     end
 
     def create(db)
-        db.execute('INSERT INTO students (name,class) VALUES(?,?)', @name, @stud_class)
+        class_id = db.execute('SELECT id FROM classes WHERE name = ?', @stud_class)['id']
+
+        db.execute('INSERT INTO students (name,stud_class) VALUES(?,?)', @name, class_id)
         id = db.execute('SELECT last_insert_rowid() FROM students;').first['last_insert_rowid()']
 
         @char.each do |x|
@@ -60,7 +62,11 @@ class Student < Dbhandler
     end
 
     def self.student_class(id, db)
-        students = db.execute('SELECT * FROM students WHERE class = ?', id)
+        students = db.execute('SELECT students.* FROM students INNER JOIN classes ON classes.id = students.stud_class WHERE classes.name = ?', id)
         return Dbhandler.orienter(:students, students)
+    end
+
+    def self.classes(db)
+        return db.execute('SELECT DISTINCT stud_class FROM students;')
     end
 end
