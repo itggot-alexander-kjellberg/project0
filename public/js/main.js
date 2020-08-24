@@ -114,6 +114,7 @@ function trait(self){
     self.parentNode.insertBefore(el, self);
 }
 
+// XML HTTP request till route på servern för att kolla om rätt bild finns
 function showInfo(element) {
     var studentId = element.id;
     var name = element.innerHTML;
