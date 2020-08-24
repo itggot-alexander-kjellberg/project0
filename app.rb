@@ -28,11 +28,13 @@ class Site < Sinatra::Base
 
     # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
     post '/student/:action' do
-        tmpdir = params["file"]["tempfile"]
-        redirect_folder = "public/img/students"
-        file_type = params["file"]["type"]
-
-        params.delete :file
+        if params["file"]["tempfile"].length > 0
+            tmpdir = params["file"]["tempfile"]
+            redirect_folder = "public/img/students"
+            file_type = params["file"]["type"]
+    
+            params.delete :file
+        end
 
         char = []
         
@@ -45,6 +47,8 @@ class Site < Sinatra::Base
         studentId = student.create(@db)
 
         FileUtils.cp(tmpdir, "#{redirect_folder}/#{studentId}.jpg")
+
+        if 
 
         redirect back
     end
@@ -61,7 +65,6 @@ class Site < Sinatra::Base
         
         answer = Trait.search(trait, @db)
 
-        p answer
         return answer.to_json
     end
 
