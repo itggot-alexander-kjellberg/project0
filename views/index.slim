@@ -3,9 +3,10 @@ div class="grid-container"
         li class="personlist"
             input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
             input class="searchBar" type="text" placeholder="character traits" oninput="trait_search(this.value);" id="traitInput"
-            select name="class" onchange="class_change(this)"
-                option value="te4" TE4
-                option value="3c" 3C
+            ==slim :"partials/class_selection", locals: {classes: @classes, onchange: true}
+            form method="post" action="/add_class"
+                input name="classname" placeholder="Class name"
+                button type="submit" New class!
             .student_box
                 -for person in @personer
                     div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id})" id="#{person.id}" #{person.name}
@@ -29,10 +30,9 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
         .cover
             input.student_add type="text" placeholder="Name" name="name"
             input.student_char type="text" placeholder="Character trait" name="char0" 
-            select name="class" 
-                option value="te4" TE4
-                option value="3c" 3C
             button class="pointer add_char" onclick="trait(this);" type="button" Add trait
+            ==slim :"partials/class_selection", locals: {classes: @classes, onchange: false}
+
             // nedanstående rad är för att kanske kunna lägga in bilder också. 
             input type="file" id="studentId" name="file" accept="image/*"
             button type="submit" class="pointer" Add student!
