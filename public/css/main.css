@@ -79,12 +79,13 @@ main {
 }
 
 .personInfo .personImg {
-  height: 80%;
-  width: 80%;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   background-image: url("../img/standarduser.png");
   background-size: cover;
+  height: 80%;
+  width: 80%;
+  background-position: center;
   background-repeat: no-repeat;
   margin: auto;
 }
