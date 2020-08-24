@@ -26,6 +26,7 @@ class Site < Sinatra::Base
         return arr.to_json
     end
 
+    # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
     post '/student/:action' do
         tmpdir = params["file"]["tempfile"]
         redirect_folder = "public/img/students"
