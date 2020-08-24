@@ -50,19 +50,25 @@ main {
         height: 100%;
             display: flex;
             align-items: flex-end;
+            
             width: 100%; 
             box-shadow: 
                 0 4px 8px 0 rgba(0, 0, 0, 0.3),
                 0 6px 20px 0 rgba(0, 0, 0, 0.2);
         }
+
         .personImg {
-            height: 80%;
-            width: 80%;
             box-shadow: 
-                0 4px 8px 0 rgba(0, 0, 0, 0.3),
-                0 6px 20px 0 rgba(0, 0, 0, 0.2);
+            0 4px 8px 0 rgba(0, 0, 0, 0.3),
+            0 6px 20px 0 rgba(0, 0, 0, 0.2);
             background-image: url("../img/standarduser.png");
             background-size: cover;
+            
+            height: 80%;
+            width: 80%;
+
+            background-position: center;
+            // background-position: center; kanske man inte vill ha. Det får göras beslut om.
 
             background-repeat: no-repeat;
             margin: auto;
