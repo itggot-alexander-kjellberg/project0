@@ -52,4 +52,8 @@ class Student < Dbhandler
         end
         return id
     end
+
+    def edit
+
+    end
 end

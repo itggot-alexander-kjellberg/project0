@@ -33,6 +33,7 @@ main {
     row-gap: 5px;
     padding: 5%;
 
+
     .students:hover {
         text-decoration: underline;
         cursor: pointer;
@@ -50,6 +51,9 @@ main {
             display: flex;
             align-items: flex-end;
             width: 100%; 
+            box-shadow: 
+                0 4px 8px 0 rgba(0, 0, 0, 0.3),
+                0 6px 20px 0 rgba(0, 0, 0, 0.2);
         }
         .personImg {
             height: 80%;
@@ -74,6 +78,16 @@ main {
             font-weight: 500;
         }
     }
+}
+
+.container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.pointer:hover{
+    cursor: pointer;
 }
 
 form.student_form{
