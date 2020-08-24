@@ -40,6 +40,7 @@ class Site < Sinatra::Base
             char << value
         end
 
+
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
         studentId = student.create(@db)
