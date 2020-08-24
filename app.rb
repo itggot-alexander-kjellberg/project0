@@ -26,27 +26,33 @@ class Site < Sinatra::Base
         return arr.to_json
     end
 
-    post '/student_add' do
+    # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
+    post '/student/:action' do
+        p "####################", params[:name]
+        p params[:file]
+        
+        if params[:file] != nil
+            tmpdir = params["file"]["tempfile"]
+            redirect_folder = "public/img/students"
+            file_type = params["file"]["type"]
+    
+            params.delete(:file)
+        end
+        
+        
         char = []
         
         params.each do |key, value|
             char << value
         end
-
+        
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
-        student.create(@db)
+        id = student.create(@db)
 
-        #lite för bilden?
-        bildFil = params[:studentImage]
-        p bildFil
-
-        temp_route = params["file"]["tempfile"]
-        p "####################################"
-        p temp_route
-        # to_folder = "public/filesystem/#{Time.new.year}/#{Time.new.month}/#{Time.new.day}/"
-        # FileUtils.mkdir_p(to_folder)
-        # FileUtils.cp(temp_route, "#{to_folder}/#{params['file']['filename']}")
+        if tmpdir != nil
+            FileUtils.cp(tmpdir, "#{redirect_folder}/#{id}.jpg")
+        end
 
         redirect back
     end
@@ -63,7 +69,6 @@ class Site < Sinatra::Base
         
         answer = Trait.search(trait, @db)
 
-        p answer
         return answer.to_json
     end
 

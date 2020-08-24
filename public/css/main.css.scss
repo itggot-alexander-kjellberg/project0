@@ -33,7 +33,6 @@ main {
     row-gap: 5px;
     padding: 5%;
 
-
     .students:hover {
         text-decoration: underline;
         cursor: pointer;
@@ -51,9 +50,6 @@ main {
             display: flex;
             align-items: flex-end;
             width: 100%; 
-            box-shadow: 
-                0 4px 8px 0 rgba(0, 0, 0, 0.3),
-                0 6px 20px 0 rgba(0, 0, 0, 0.2);
         }
         .personImg {
             height: 80%;
@@ -80,16 +76,6 @@ main {
     }
 }
 
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.pointer:hover{
-    cursor: pointer;
-}
-
 form.student_form{
     width: 100vw;
     height: 100vh;
@@ -100,44 +86,25 @@ form.student_form{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    .form-box{
-        width: 400px;
-        height: 600px;
-        background-color: white;
-        border-radius: 10px;
-        display: grid;
-        grid-template-rows: 60px 1fr;
-        
-        i.material-icons{
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
-            margin: 10px 10px 0 auto;
-        }
-
-        .cover{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            
-            input{
-                width: 250px;
-                height: 35px;
-                margin: 5px 0 5px 0;
-            }
-        
-            button{
-                width: 200px;
-                margin-top: 15px;
-            }
-        }
+    input{
+        width: 250px;
+        height: 35px;
     }
 
+    button{
+        width: 200px;
+        margin-top: 15px;
+    }
 }
 
 .hide{
     display: none;
     visibility: hidden;
+}
+
+
+button {
+    padding: 5px;
+    background-color: red;
+    color: yellow;
 }

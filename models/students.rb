@@ -51,6 +51,12 @@ class Student < Dbhandler
                 db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", exist.first['id'], id)
             end
         end
+
+        return id
+    end
+
+    def edit
+
     end
 
     def self.student_class(id, db)

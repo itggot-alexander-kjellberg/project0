@@ -88,9 +88,15 @@ function studentTraitGenerator(id){
     xhttp.send();
 }
 
-function student_add_menu(){
+function student_add_menu(action){
     var form = document.querySelector('form.student_form');
     form.classList.toggle('hide');
+
+    if(action == 'add'){
+        form.setAttribute('action','/student/add')
+    }else if(action == 'edit'){
+        form.setAttribute('action','/student/edit')
+    }
 }
 
 // hur kallar man på ruby/db_handler? Kan man?
@@ -152,4 +158,11 @@ function class_change(self){
     xhttp.send();
 
     // console.log(self.value)
+
+
+}
+
+function student_edit_displayName(){
+    var name = document.querySelector(".name").innerHTML;
+    document.querySelector("#studentName").innerHTML = ("Edit "+name+"'s"+" traits")
 }
