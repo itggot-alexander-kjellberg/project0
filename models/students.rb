@@ -37,7 +37,8 @@ class Student < Dbhandler
     end
 
     def create(db)
-        class_id = db.execute('SELECT id FROM classes WHERE name = ?', @stud_class)['id']
+        class_id = db.execute('SELECT id FROM classes WHERE name = ?', @stud_class).first['id']
+        p class_id
 
         db.execute('INSERT INTO students (name,stud_class) VALUES(?,?)', @name, class_id)
         id = db.execute('SELECT last_insert_rowid() FROM students;').first['last_insert_rowid()']

@@ -84,7 +84,7 @@ class Site < Sinatra::Base
     end
 
     post '/class_change/:class' do
-        students = Classes.get(params[:class], @db)
+        students = Student.student_class(params[:class], @db)
         answer = []
         
         for x in students do 
