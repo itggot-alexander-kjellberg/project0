@@ -28,27 +28,31 @@ class Site < Sinatra::Base
 
     # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
     post '/student/:action' do
-        if params["file"]["tempfile"].length > 0
+        p "####################", params[:name]
+        p params[:file]
+        
+        if params[:file] != nil
             tmpdir = params["file"]["tempfile"]
             redirect_folder = "public/img/students"
             file_type = params["file"]["type"]
     
-            params.delete :file
+            params.delete(:file)
         end
-
+        
+        
         char = []
         
         params.each do |key, value|
             char << value
         end
-
+        
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
-        studentId = student.create(@db)
+        id = student.create(@db)
 
-        FileUtils.cp(tmpdir, "#{redirect_folder}/#{studentId}.jpg")
-
-        if 
+        if tmpdir != nil
+            FileUtils.cp(tmpdir, "#{redirect_folder}/#{id}.jpg")
+        end
 
         redirect back
     end
