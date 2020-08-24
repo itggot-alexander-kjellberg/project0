@@ -5,11 +5,11 @@ class Classes < Dbhandler
 
     end
 
-    def self.get(id, db)
-        if id == :all
+    def self.get(name, db)
+        if name == :all
             return db.execute('SELECT * FROM classes')
         else
-            return db.execute('SELECT * FROM classes WHERE id = ?', id)
+            return db.execute('SELECT * FROM classes WHERE name = ?', name)
         end
     end
 end

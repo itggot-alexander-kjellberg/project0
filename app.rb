@@ -84,8 +84,9 @@ class Site < Sinatra::Base
     end
 
     post '/class_change/:class' do
-        students = Student.student_class(params[:class], @db)
+        students = Classes.get(params[:class], @db)
         answer = []
+        
         for x in students do 
             answer << Student.json_creator(x)
         end
