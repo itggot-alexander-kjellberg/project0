@@ -74,6 +74,8 @@ main {
       -ms-flex-align: end;
           align-items: flex-end;
   width: 100%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .personInfo .personImg {
@@ -96,6 +98,23 @@ main {
   font-size: 200%;
   text-decoration: underline;
   font-weight: 500;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pointer:hover {
+  cursor: pointer;
 }
 
 form.student_form {

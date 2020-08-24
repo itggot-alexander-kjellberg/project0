@@ -26,7 +26,7 @@ class Site < Sinatra::Base
         return arr.to_json
     end
 
-    post '/student_add' do
+    post '/student/:action' do
         char = []
         
         params.each do |key, value|
@@ -35,7 +35,12 @@ class Site < Sinatra::Base
 
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
-        student.create(@db)
+
+        if params[:action] == 'add'
+            student.create(@db)
+        else
+            student.edit()
+        end
 
         #lite för bilden?
         # bildFil = params[:studentImage]
