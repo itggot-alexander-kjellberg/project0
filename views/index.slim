@@ -9,8 +9,6 @@ div class="grid-container"
             .student_box
                 -for person in @personer
                     div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id})" id="#{person.id}" #{person.name}
-            -for person in @personer
-                div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id}); student_edit_displayName()" id="#{person.id}" #{person.name}
             button class="pointer add_student" onclick="student_add_menu()" Add student!
         section class="personInfo"
             div class="personText"

@@ -28,9 +28,13 @@ class Site < Sinatra::Base
 
     # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
     post '/student/:action' do
-        p "####################", params[:name]
-        p params[:file]
-        
+
+        if params[:action] == 'remove' 
+            idToRemove = params[:studentId]
+            Dbhandler.removeStudent(idToRemove)
+            redirect back
+        end
+
         if params[:file] != nil
             tmpdir = params["file"]["tempfile"]
             redirect_folder = "public/img/students"
@@ -45,7 +49,6 @@ class Site < Sinatra::Base
         params.each do |key, value|
             char << value
         end
-
 
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
