@@ -1,5 +1,4 @@
 body {
-    font-family: 'Roboto', sans-serif;
     margin: 0;
 }
 
@@ -86,44 +85,25 @@ form.student_form{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    .form-box{
-        width: 400px;
-        height: 600px;
-        background-color: white;
-        border-radius: 10px;
-        display: grid;
-        grid-template-rows: 60px 1fr;
-        
-        i.material-icons{
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
-            margin: 10px 10px 0 auto;
-        }
-
-        .cover{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            
-            input{
-                width: 250px;
-                height: 35px;
-                margin: 5px 0 5px 0;
-            }
-        
-            button{
-                width: 200px;
-                margin-top: 15px;
-            }
-        }
+    input{
+        width: 250px;
+        height: 35px;
     }
 
+    button{
+        width: 200px;
+        margin-top: 15px;
+    }
 }
 
 .hide{
     display: none;
-    visibility: visible;
+    visibility: hidden;
+}
+
+
+button {
+    padding: 5px;
+    background-color: red;
+    color: yellow;
 }

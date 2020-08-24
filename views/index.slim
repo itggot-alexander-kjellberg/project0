@@ -15,7 +15,7 @@ div class="grid-container"
                     button type="submit" class="remove_student" Remove
             div class="imgContainer"
                 div class="personImg"
-form.student_form.hide method="post" action="/student_add"
+form.student_form.hide method="post" action="/student_add" enctype="multipart/form-data"
     .form-box
         i.material-icons onclick="student_add_menu()" close
         .cover
@@ -23,5 +23,6 @@ form.student_form.hide method="post" action="/student_add"
             input.student_char type="text" placeholder="Character trait" name="char0" 
             button.add_char onclick="trait(this);" type="button" Add trait
             // nedanstående rad är för att kanske kunna lägga in bilder också. 
-            input type="file" id="studentId" name="studentImage"
+            input type="file" id="studentId" name="file" accept="image/*"
             button type="submit" Add student!
+/ input type="file" id="studentId" name="file" placeholder="upload img" enctype="multipart/form-data"

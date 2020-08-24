@@ -26,7 +26,13 @@ class Site < Sinatra::Base
         return arr.to_json
     end
 
-    post '/student_add' do
+    post '/student/:action' do
+        tmpdir = params["file"]["tempfile"]
+        redirect_folder = "public/img/students"
+        file_type = params["file"]["type"]
+
+        params.delete :file
+
         char = []
         
         params.each do |key, value|
@@ -35,16 +41,9 @@ class Site < Sinatra::Base
 
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
-        student.create(@db)
+        studentId = student.create(@db)
 
-        #lite för bilden?
-        # bildFil = params[:studentImage]
-        # p bildFil
-
-        # temp_route = params["file"]["tempfile"]
-        # to_folder = "public/filesystem/#{Time.new.year}/#{Time.new.month}/#{Time.new.day}/"
-        # FileUtils.mkdir_p(to_folder)
-        # FileUtils.cp(temp_route, "#{to_folder}/#{params['file']['filename']}")
+        FileUtils.cp(tmpdir, "#{redirect_folder}/#{studentId}.jpg")
 
         redirect back
     end

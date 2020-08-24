@@ -35,7 +35,7 @@ class Student < Dbhandler
         return student
     end
 
-  def create(db)
+    def create(db)
         db.execute('INSERT INTO students (name) VALUES(?)', @name)
         id = db.execute('SELECT last_insert_rowid() FROM students;').first['last_insert_rowid()']
 
@@ -50,5 +50,6 @@ class Student < Dbhandler
                 db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", exist.first['id'], id)
             end
         end
+        return id
     end
 end
