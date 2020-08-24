@@ -11,7 +11,7 @@ class Dbhandler
 
         if type == :students
             for student in arr do
-                answer << Student.new(student['id'], student['name'], nil)
+                answer << Student.new(student['id'], student['name'], nil, student['class'])
             end
         end
 

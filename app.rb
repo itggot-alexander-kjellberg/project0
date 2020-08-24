@@ -38,10 +38,12 @@ class Site < Sinatra::Base
         student.create(@db)
 
         #lite för bilden?
-        # bildFil = params[:studentImage]
-        # p bildFil
+        bildFil = params[:studentImage]
+        p bildFil
 
-        # temp_route = params["file"]["tempfile"]
+        temp_route = params["file"]["tempfile"]
+        p "####################################"
+        p temp_route
         # to_folder = "public/filesystem/#{Time.new.year}/#{Time.new.month}/#{Time.new.day}/"
         # FileUtils.mkdir_p(to_folder)
         # FileUtils.cp(temp_route, "#{to_folder}/#{params['file']['filename']}")
@@ -67,6 +69,16 @@ class Site < Sinatra::Base
 
     post '/student_trait_generator/:id' do
         answer = Trait.get(params[:id], @db)
+        return answer.to_json
+    end
+
+    post '/class_change/:class' do
+        students = Student.student_class(params[:class], @db)
+        answer = []
+        for x in students do 
+            answer << Student.json_creator(x)
+        end
+
         return answer.to_json
     end
 end

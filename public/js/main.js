@@ -74,7 +74,7 @@ function studentTraitGenerator(id){
             
             
             answer = JSON.parse(this.response);
-            
+            console.log(answer)
             for(trait of answer){
                 var el = document.createElement('p');
                 el.innerHTML = trait.name
@@ -119,4 +119,37 @@ function showInfo(element) {
     var leButton = document.querySelector(".remove_student");
     leButton.setAttribute("id", studentId);
     document.querySelector("#removeId").setAttribute("value", studentId);
+}
+
+function class_change(self){
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){     
+            answer = JSON.parse(this.response);
+            
+            var parent = document.querySelector('.student_box');
+            
+            while (parent.firstChild){
+                parent.removeChild(parent.lastChild);
+            }
+
+            for(student of answer){
+                var el = document.createElement('div');
+                el.classList.add('students');
+                el.setAttribute('id', student.id);
+                el.setAttribute('onclick', 'showInfo(this)');
+                el.innerHTML = student.name
+
+                parent.appendChild(el)
+            }
+
+            console.log(answer)
+        }
+    };
+
+    xhttp.open('POST' , `/class_change/${self.value}`);
+    xhttp.send();
+
+    // console.log(self.value)
 }
