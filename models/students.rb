@@ -1,13 +1,14 @@
 require_relative 'dbhandler'
 
 class Student < Dbhandler
-    attr_reader :id, :name, :char
+    attr_reader :id, :name, :char, :stud_class
 
-    def initialize(id, name, char)
+    def initialize(id, name, char, stud_class)
         @id = id
         @name = name
         @db = Dbhandler.new
         @char = char
+        @stud_class = stud_class
     end
 
     def self.get(id, db)
@@ -31,7 +32,7 @@ class Student < Dbhandler
         student[:name] = x.name
         student[:id] = x.id
         student[:char] = x.char
-
+        student[:stud_class] = x.stud_class
         return student
     end
 
@@ -50,10 +51,16 @@ class Student < Dbhandler
                 db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", exist.first['id'], id)
             end
         end
+
         return id
     end
 
     def edit
 
+    end
+
+    def self.student_class(id, db)
+        students = db.execute('SELECT * FROM students WHERE class = ?', id)
+        return Dbhandler.orienter(:students, students)
     end
 end

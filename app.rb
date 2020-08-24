@@ -28,12 +28,18 @@ class Site < Sinatra::Base
 
     # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
     post '/student/:action' do
-        tmpdir = params["file"]["tempfile"]
-        redirect_folder = "public/img/students"
-        file_type = params["file"]["type"]
-
-        params.delete :file
-
+        p "####################", params[:name]
+        p params[:file]
+        
+        if params[:file] != nil
+            tmpdir = params["file"]["tempfile"]
+            redirect_folder = "public/img/students"
+            file_type = params["file"]["type"]
+    
+            params.delete(:file)
+        end
+        
+        
         char = []
         
         params.each do |key, value|
@@ -43,9 +49,11 @@ class Site < Sinatra::Base
 
         traits = char.drop(1)
         student = Student.new(nil, params[:name], traits)
-        studentId = student.create(@db)
+        id = student.create(@db)
 
-        FileUtils.cp(tmpdir, "#{redirect_folder}/#{studentId}.jpg")
+        if tmpdir != nil
+            FileUtils.cp(tmpdir, "#{redirect_folder}/#{id}.jpg")
+        end
 
         redirect back
     end
@@ -62,12 +70,21 @@ class Site < Sinatra::Base
         
         answer = Trait.search(trait, @db)
 
-        p answer
         return answer.to_json
     end
 
     post '/student_trait_generator/:id' do
         answer = Trait.get(params[:id], @db)
+        return answer.to_json
+    end
+
+    post '/class_change/:class' do
+        students = Student.student_class(params[:class], @db)
+        answer = []
+        for x in students do 
+            answer << Student.json_creator(x)
+        end
+
         return answer.to_json
     end
 end
