@@ -1,3 +1,4 @@
+
 function autoHighlight(name_input) {
 
     var students = document.querySelectorAll('.students');
@@ -16,7 +17,6 @@ function autoHighlight(name_input) {
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             answer = JSON.parse(this.response);
-            console.log(answer);
             
             for(student of answer){
                 var element = document.getElementById(student.id);
@@ -38,14 +38,11 @@ function trait_search(name_input){
     if(name_input == null || name_input == ''){
         return;
     }
-    
-    console.log(name_input)
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             answer = JSON.parse(this.response);
-            console.log(answer);
             
             for(student of answer){
                 var element = document.getElementById(student.student_id);
@@ -56,6 +53,11 @@ function trait_search(name_input){
 
     xhttp.open('POST' , `/search_trait/${name_input}`);
     xhttp.send();
+}
+
+function class_delete(){
+    var el = document.querySelector('form.delete_class');
+    el.classList.toggle('hide');
 }
 
 function studentTraitGenerator(id){
@@ -74,11 +76,9 @@ function studentTraitGenerator(id){
             
             
             answer = JSON.parse(this.response);
-            console.log(answer)
             for(trait of answer){
                 var el = document.createElement('p');
                 el.innerHTML = trait.name
-                console.log(trait.name)
                 parent.appendChild(el)
             }
         }
@@ -170,9 +170,6 @@ function class_change(self){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){     
             answer = JSON.parse(this.response);
-            console.log(answer.length)
-
-
 
             var parent = document.querySelector('.student_box');
             
@@ -191,22 +188,16 @@ function class_change(self){
                 var el = document.createElement('div');
                 el.classList.add('students');
                 el.setAttribute('id', student.id);
-                el.setAttribute('onclick', 'showInfo(this)');
-                el.innerHTML = student.name
-
+                el.setAttribute('onclick', `showInfo(this); studentTraitGenerator(${student.id});`);
                 parent.appendChild(el)
+                el.innerHTML = student.name
+                console.log(student)
             }
-
-            console.log(answer)
         }
     };
 
     xhttp.open('POST' , `/class_change/${self.value}`);
     xhttp.send();
-
-    // console.log(self.value)
-
-
 }
 
 function student_edit_displayName(){
@@ -217,3 +208,4 @@ function student_edit_displayName(){
 function char_remove(self){
     self.parentNode.parentNode.removeChild(self.parentNode)
 }
+

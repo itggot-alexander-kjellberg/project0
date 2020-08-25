@@ -175,3 +175,19 @@ form.student_form{
     display: none;
     visibility: hidden;
 }
+
+form.delete_class{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 255, 0.7);
+}
+.cover{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+    margin: auto;
