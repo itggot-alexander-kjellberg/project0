@@ -86,7 +86,11 @@ class Site < Sinatra::Base
     end
 
     post '/class_change/:class' do
-        students = Student.student_class(params[:class], @db)
+        if params[:class] == 'all'
+            students = Student.get(:all, @db)
+        else
+            students = Student.student_class(params[:class], @db)
+        end
         answer = []
         
         for x in students do 
