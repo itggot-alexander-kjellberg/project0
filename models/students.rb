@@ -56,10 +56,6 @@ class Student < Dbhandler
         return id
     end
 
-    def edit
-
-    end
-
     def self.student_class(id, db)
         if id != 'all'
             students = db.execute('SELECT students.* FROM students INNER JOIN classes ON classes.id = students.stud_class WHERE classes.name = ?', id)

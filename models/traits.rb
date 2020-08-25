@@ -16,7 +16,7 @@ class Trait < Dbhandler
     end
 
     def self.search(trait_name, db)
-        answer = db.execute('SELECT * FROM students INNER JOIN traits ON traits.id = students.id WHERE traits.name LIKE ?', "%#{trait_name}%")
+        answer = db.execute('SELECT * FROM traits WHERE name LIKE ?', "%#{trait_name}%")
         return answer.to_json
     end
 end

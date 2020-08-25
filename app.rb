@@ -2,7 +2,7 @@ require 'json'
 require_relative 'models/dbhandler'
 require_relative 'models/students'
 require_relative 'models/traits'
-require_relative 'models/classes'
+require_relative 'models/courses'
 require 'tmpdir'
 
 class Site < Sinatra::Base
@@ -13,7 +13,7 @@ class Site < Sinatra::Base
 
     get '/' do
         @personer = Student.get(:all, @db)
-        @classes = Classes.get(:all, @db)
+        @classes = Course.get(:all, @db)
         slim :index 
     end
 
@@ -82,21 +82,20 @@ class Site < Sinatra::Base
         return Student.json_creator(students)
     end
 
-    post '/add_class' do
-        class_name = params[:classname]
-        @db.execute('INSERT INTO classes (name) VALUES (?)', class_name)
+    post '/course/new' do
+        course = Course.new(params[:classname])
+        course.create
+
         redirect back
     end
 
     post '/userimg/:id' do
         answer = Student.checkUserImg(params[:id])
-        p "####### #######"
-        p answer
         return answer.to_json
     end
     
-    post '/class/delete' do
-        Classes.destroy(params[:class], @db)
+    post '/course/destroy' do
+        Course.destroy(params[:class], @db)
         redirect back
     end
 end

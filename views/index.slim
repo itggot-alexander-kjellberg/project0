@@ -4,7 +4,7 @@ div class="grid-container"
             input class="searchBar" type="text" placeholder="name" oninput="autoHighlight(this.value);" id="input"
             input class="searchBar" type="text" placeholder="character traits" oninput="trait_search(this.value);" id="traitInput"
             ==slim :"partials/class_selection", locals: {classes: @classes, onchange: true}
-            form method="post" action="/add_class"
+            form method="post" action="/course/new"
                 input name="classname" placeholder="Class name" required="required"
                 button type="submit" New class!
             .student_box
@@ -48,7 +48,7 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
 / input type="file" id="studentId" name="file" placeholder="upload img" enctype="multipart/form-data"
  
 /input type="file" id="studentId" nam="file" placeholder="upload img" enctype="multipart/form-data"
-form.student_form.hide method="post" action="/class/delete" id="class_delete"
+form.student_form.hide method="post" action="/course/destroy" id="class_delete"
     .form-box
         i class="material-icons pointer" onclick="toggle_form('#class_delete')" close
         .cover
