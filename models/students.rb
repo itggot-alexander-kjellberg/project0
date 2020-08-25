@@ -71,4 +71,8 @@ class Student < Dbhandler
     def self.classes(db)
         return db.execute('SELECT DISTINCT stud_class FROM students;')
     end
+
+    def self.checkUserImg(id)
+        return File.exist?("public/img/students/#{id}.jpg")
+    end
 end

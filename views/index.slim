@@ -14,7 +14,7 @@ div class="grid-container"
                     -for person in @personer
                         div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id}); student_edit_displayName()" id="#{person.id}" #{person.name}
             button class="pointer add_student" onclick="student_add_menu()" Add student!
-            button class="pointer" Delete class!
+            button class="pointer" onclick="class_delete();" Delete class!
         section class="personInfo"
             div class="personText"
                 p class="name" elev.exe
@@ -45,3 +45,9 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
             input type="file" id="studentId" name="file" accept="image/*"
             button type="submit" class="pointer" Add student!
 / input type="file" id="studentId" name="file" placeholder="upload img" enctype="multipart/form-data"
+ 
+/input type="file" id="studentId" nam="file" placeholder="upload img" enctype="multipart/form-data"
+form.delete_class.hide method="post" action="/student/delet"
+    .form-box
+        i class="material-icons pointer" onclick="student_add_menu()" close
+        .cover
