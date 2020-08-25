@@ -1,3 +1,4 @@
+
 function autoHighlight(name_input) {
 
     var students = document.querySelectorAll('.students');
@@ -56,6 +57,11 @@ function trait_search(name_input){
 
     xhttp.open('POST' , `/search_trait/${name_input}`);
     xhttp.send();
+}
+
+function class_delete(){
+    var el = document.querySelector('form.delete_class');
+    el.classList.toggle('hide');
 }
 
 function studentTraitGenerator(id){
@@ -192,3 +198,4 @@ function student_edit_displayName(){
 function char_remove(self){
     self.parentNode.parentNode.removeChild(self.parentNode)
 }
+
