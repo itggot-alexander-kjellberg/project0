@@ -18,40 +18,25 @@ class Site < Sinatra::Base
     end
 
     post '/search_name/:name' do
+        
         students = Student.search(params[:name], @db)
-        arr = []
-
-        for student in students do
-            arr << Student.json_creator(student)
-        end
-
-        return arr.to_json
+        return Student.json_creator(students)
     end
 
     # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
-    post '/student/update/:id' do
-        id = params[:id]
-        name = params[:name]
-        char = []
-        
-        params.each do |key, value|
-            if key != 'action' && key != 'class'
-                char << value
-            end
-        end
-    
-        traits = char.drop(1)
-        Student.update(char, name, id, @db)
-    end
-    
-    post '/student/:action' do
+    post '/student/edit/:id' do
 
-        if params[:action] == 'remove' 
-            idToRemove = params[:studentId]
-            Dbhandler.removeStudent(idToRemove)
-            redirect back
-        elsif params[:action] == 'edit'
-        end
+        Student.update(params, @db)
+        redirect '/'
+    end
+
+    post '/student/remove' do
+        idToRemove = params[:studentId]
+        Student.destroy(idToRemove, @db)
+        redirect back
+    end
+
+    post '/student/add' do
 
         if params[:file] != nil
             tmpdir = params["file"]["tempfile"]
@@ -69,47 +54,32 @@ class Site < Sinatra::Base
                 char << value
             end
         end
-
+    
         traits = char.drop(1)
+    
         student = Student.new(nil, params[:name], traits, params[:class])
         id = student.create(@db)
-
+    
         if tmpdir != nil
             FileUtils.cp(tmpdir, "#{redirect_folder}/#{id}.jpg")
         end
-
-        redirect back
-    end
-
-    post '/student_remove' do
-        idToRemove = params[:studentId]
-        Dbhandler.removeStudent(idToRemove)
+    
         redirect back
     end
 
     post '/search_trait/:trait' do
 
-        trait = params[:trait]
-        
-        answer = Trait.search(trait, @db)
-
-        return answer.to_json
+        return Trait.search(params[:trait], @db)
     end
 
     post '/student_trait_generator/:id' do
-        answer = Trait.get(params[:id], @db)
-        return answer.to_json
+
+        return Trait.get(params[:id], @db)
     end
 
     post '/class_change/:class' do
         students = Student.student_class(params[:class], @db)
-        answer = []
-        
-        for x in students do 
-            answer << Student.json_creator(x)
-        end
-
-        return answer.to_json
+        return Student.json_creator(students)
     end
 
     post '/add_class' do

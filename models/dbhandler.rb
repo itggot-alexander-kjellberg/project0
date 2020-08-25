@@ -17,10 +17,4 @@ class Dbhandler
 
         return answer
     end
-
-    def self.removeStudent(id)
-        Dbhandler.get.execute("DELETE FROM students WHERE id = ?;", id)
-        Dbhandler.get.execute("DELETE FROM student_trait_connection WHERE student_id = ?;", id)
-    end
-
 end

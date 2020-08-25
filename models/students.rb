@@ -27,13 +27,20 @@ class Student < Dbhandler
         return Dbhandler.orienter(:students, arr)
     end
 
-    def self.json_creator(x)
-        student = Hash.new
-        student[:name] = x.name
-        student[:id] = x.id
-        student[:char] = x.char
-        student[:stud_class] = x.stud_class
-        return student
+    def self.json_creator(arr)
+        answer = []
+
+        arr.each do |x|
+            student = Hash.new
+            student[:name] = x.name
+            student[:id] = x.id
+            student[:char] = x.char
+            student[:stud_class] = x.stud_class
+
+            answer << student
+        end
+
+        return answer.to_json
     end
 
     def create(db)
@@ -42,18 +49,8 @@ class Student < Dbhandler
         db.execute('INSERT INTO students (name,stud_class) VALUES(?,?)', @name, class_id)
         id = db.execute('SELECT last_insert_rowid() FROM students;').first['last_insert_rowid()']
 
-        p "##############", @char
-
         @char.each do |x|
-            exist = db.execute("SELECT * FROM traits WHERE name LIKE ?", x)
-            
-            if(exist == [])
-                db.execute("INSERT INTO traits (name) VALUES(?)", x)
-                char_id = db.execute("SELECT last_insert_rowid() FROM traits;").first['last_insert_rowid()']
-                db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", char_id, id)
-            else
-                db.execute("INSERT INTO student_trait_connection (trait_id, student_id) VALUES(?,?)", exist.first['id'], id)
-            end
+            db.execute('INSERT INTO traits (name, student_id) VALUES(?,?)', x, id)
         end
 
         return id
@@ -64,7 +61,11 @@ class Student < Dbhandler
     end
 
     def self.student_class(id, db)
-        students = db.execute('SELECT students.* FROM students INNER JOIN classes ON classes.id = students.stud_class WHERE classes.name = ?', id)
+        if id != 'all'
+            students = db.execute('SELECT students.* FROM students INNER JOIN classes ON classes.id = students.stud_class WHERE classes.name = ?', id)
+        else
+            students = db.execute('SELECT * FROM students')
+        end
         return Dbhandler.orienter(:students, students)
     end
 
@@ -76,16 +77,29 @@ class Student < Dbhandler
         return File.exist?("public/img/students/#{id}.jpg")
     end
 
-    def self.update(arr, name, id, db)
+    def self.update(params, db)
+        id = params[:id]
+        name = params[:name]
+        char = []
         
-        arr.each do |x|
-            exist = db.execute("SELECT * FROM traits INNER JOIN student_trait_connection ON student_trait_connection.trait_id = traits.id  WHERE name LIKE ?", x)
-
-            if(exist.length == 1)
-                db.execute('UPDATE traits SET name = ? WHERE student_id = ?', x, id)
-            else
-
+        params.each do |key, value|
+            if key != 'action' && key != 'class'
+                char << value
             end
+        end
+    
+        traits = char.drop(1)
+        traits.pop()
+
+        db.execute('DELETE FROM traits WHERE student_id = ?', id)
+
+        traits.each do |x|
+            db.execute('INSERT INTO traits (name, student_id) VALUES(?,?)', x, id)
         end 
+    end
+
+    def self.destroy(id, db)
+        db.execute('DELETE FROM students WHERE id = ?', id)
+        db.execute('DELETE FROM traits WHERE student_id = ?', id)
     end
 end

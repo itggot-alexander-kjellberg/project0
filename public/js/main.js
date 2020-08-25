@@ -43,7 +43,6 @@ function trait_search(name_input){
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             answer = JSON.parse(this.response);
-            
             for(student of answer){
                 var element = document.getElementById(student.student_id);
                 element.style.backgroundColor = 'rgba(0,0,255,0.7)';
