@@ -75,4 +75,17 @@ class Student < Dbhandler
     def self.checkUserImg(id)
         return File.exist?("public/img/students/#{id}.jpg")
     end
+
+    def self.update(arr, name, id, db)
+        
+        arr.each do |x|
+            exist = db.execute("SELECT * FROM traits INNER JOIN student_trait_connection ON student_trait_connection.trait_id = traits.id  WHERE name LIKE ?", x)
+
+            if(exist.length == 1)
+                db.execute('UPDATE traits SET name = ? WHERE student_id = ?', x, id)
+            else
+
+            end
+        end 
+    end
 end
