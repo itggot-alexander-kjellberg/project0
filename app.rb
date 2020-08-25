@@ -29,6 +29,21 @@ class Site < Sinatra::Base
     end
 
     # Bild-koden (i dess nuvarande stadie) måste köras innan allt annat, samt måste tas bort 
+    post '/student/update/:id' do
+        id = params[:id]
+        name = params[:name]
+        char = []
+        
+        params.each do |key, value|
+            if key != 'action' && key != 'class'
+                char << value
+            end
+        end
+    
+        traits = char.drop(1)
+        Student.update(char, name, id, @db)
+    end
+    
     post '/student/:action' do
 
         if params[:action] == 'remove' 
@@ -36,7 +51,6 @@ class Site < Sinatra::Base
             Dbhandler.removeStudent(idToRemove)
             redirect back
         elsif params[:action] == 'edit'
-            
         end
 
         if params[:file] != nil

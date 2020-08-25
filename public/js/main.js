@@ -94,7 +94,9 @@ function student_remove(element) {
     studentId = element.id;
 }
 
-function trait_func(self){
+function trait_func(){
+    var parent = document.querySelector('.char_inputs');
+
     var el = document.createElement('input');
     el.classList.add('student_char');
     el.placeholder = 'Character trait'
@@ -112,41 +114,56 @@ function trait_func(self){
     char_box.appendChild(el)
     char_box.appendChild(icon)
     
-    self.parentNode.insertBefore(char_box, self);
+    parent.appendChild(char_box);
 }
 
 function student_add_menu(action){
-    var cover = document.querySelector('.cover');
 
+    var cover = document.querySelector('.char_inputs');
+    console.log(cover.lastChild)
     while (cover.firstChild){
-        cover.removeChild(cover.lastChild);
+        if(cover.lastChild.classList.contains('char_box')){
+            cover.removeChild(cover.lastChild);
+        }
     };
 
     var form = document.querySelector('form.student_form');
+    console.log(form)
     form.classList.toggle('hide');
 
     if(action == 'add'){
-        form.setAttribute('action','/student/add')
+        form.setAttribute('action','/student/add');
+        document.getElementById("student_button").innerHTML = "Add student!"
     }else if(action == 'edit'){
-        form.setAttribute('action','/student/edit');
+        var stud_id = document.querySelector('p.name').id
+        form.setAttribute('action',`/student/edit/${stud_id}`);
+
+        document.getElementById("student_button").innerHTML = "Edit student!"
+
         var name = document.querySelector(".name").innerHTML;
         document.querySelector("#studentName2").value = name;
         
         var i=0;
-        var student_traits = document.querySelector(".traitParent").children.length;
-        console.log(document.querySelector(".traitParent").children.length);
-        while(i < student_traits){
-            console.log('yyyyought')           
-            i++;
-            trait_func(document.querySelector('button.add_char.pointer'));
-            // console.log(i);
+        var student_traits = document.querySelector(".traitParent").children;
 
+        while(i < student_traits.length){  
+            trait_func();
+            i++;
+            
+            // var trait = document.querySelector(".traitParent").innerHTML;
+            // document.querySelector(".student").value = trait;        
+            // var student_traits = document.querySelector(".traitParent").innerHTML;
+            // document.querySelector(".student_char").value = student_traits;
+            
         }
-    
+        var x = 0;
         
+        var inputs = document.querySelector('.char_inputs').children;
+        while(x < inputs.length){
+            inputs[x].children[0].value = student_traits[x].innerHTML;
+            x++;
+        }
         
-        // var student_traits = document.querySelector(".traitParent").innerHTML;
-        // document.querySelector(".student_char").value = student_traits;
 
     }
 }
@@ -156,6 +173,7 @@ function showInfo(element) {
     var name = element.innerHTML;
     var namn = document.querySelector(".name");
     namn.innerHTML = name;
+    namn.id = element.id
 
     var requesten = new XMLHttpRequest();
     requesten.onreadystatechange = function(){

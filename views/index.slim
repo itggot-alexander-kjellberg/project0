@@ -33,17 +33,18 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
         i class="material-icons pointer" onclick="student_add_menu()" close
         .cover
             input.student_add type="text" placeholder="Name" name="name" id="studentName2"
-            .char_box
-                input.student_char type="text" placeholder="Character trait" name="char0" 
-                i.material-icons onclick="char_remove(this)" remove_circle_outline
-            button class="pointer add_char" onclick="trait_func(this)" type="button" Add trait
+            .char_inputs
+                .char_box id="char_box"
+                    input.student_char type="text" placeholder="Character trait" name="char0" 
+                    i.material-icons onclick="char_remove(this)" remove_circle_outline
+            button class="pointer add_char" onclick="trait_func()" type="button" Add trait
             .char_box
                 p Choose class for new student:
                 ==slim :"partials/class_selection", locals: {classes: @classes, onchange: false}
 
             // nedanstående rad är för att kanske kunna lägga in bilder också. 
             input type="file" id="studentId" name="file" accept="image/*"
-            button type="submit" class="pointer" Add student!
+            button type="submit" class="pointer" id="student_button" Add student!
 / input type="file" id="studentId" name="file" placeholder="upload img" enctype="multipart/form-data"
  
 /input type="file" id="studentId" nam="file" placeholder="upload img" enctype="multipart/form-data"
