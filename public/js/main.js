@@ -56,7 +56,7 @@ function trait_search(name_input){
 }
 
 function class_delete(){
-    var el = document.querySelector('form.delete_class');
+    var el = document.getElementById('class_delete');
     el.classList.toggle('hide');
 }
 
@@ -251,5 +251,10 @@ function student_edit_displayName(){
 
 function char_remove(self){
     self.parentNode.parentNode.removeChild(self.parentNode)
+}
+
+function toggle_form(id){
+    var form = document.querySelector(id);
+    form.classList.toggle('hide');
 }
 

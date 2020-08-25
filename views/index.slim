@@ -13,8 +13,8 @@ div class="grid-container"
                 -else
                     -for person in @personer
                         div class="students" onclick="showInfo(this); studentTraitGenerator(#{person.id}); student_edit_displayName()" id="#{person.id}" #{person.name}
-            button class="pointer add_student" onclick="student_add_menu('add')" Add student!
-            button class="pointer" onclick="class_delete();" Delete class!
+            button class="pointer add_student" onclick="toggle_form('#student_add')" Add student!
+            button class="pointer" onclick="toggle_form('#class_delete')" Delete class!
         section class="personInfo"
             div class="personText"
                 p class="name" elev.exe
@@ -28,7 +28,7 @@ div class="grid-container"
                         button type="submit" class="remove_student pointer" Remove
             div class="imgContainer"
                 div class="personImg"
-form.student_form.hide method="post" action="/student/add" enctype="multipart/form-data"
+form.student_form.hide method="post" action="/student/add" enctype="multipart/form-data" id="student_add"
     .form-box
         i class="material-icons pointer" onclick="student_add_menu()" close
         .cover
@@ -48,7 +48,10 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
 / input type="file" id="studentId" name="file" placeholder="upload img" enctype="multipart/form-data"
  
 /input type="file" id="studentId" nam="file" placeholder="upload img" enctype="multipart/form-data"
-form.delete_class.hide method="post" action="/student/delet"
+form.student_form.hide method="post" action="/class/delete" id="class_delete"
     .form-box
-        i class="material-icons pointer" onclick="student_add_menu()" close
+        i class="material-icons pointer" onclick="toggle_form('#class_delete')" close
         .cover
+            p Deleting the class will delete all students within it. Please select class to delete.
+            ==slim :"partials/class_selection", locals: {classes: @classes, onchange: false}
+            button type="submit" Delete

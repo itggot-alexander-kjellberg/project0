@@ -125,4 +125,8 @@ class Site < Sinatra::Base
         return answer.to_json
     end
     
+    post '/class/delete' do
+        Classes.destroy(params[:class], @db)
+        redirect back
+    end
 end
