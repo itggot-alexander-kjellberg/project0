@@ -117,4 +117,5 @@ class Site < Sinatra::Base
         @db.execute('INSERT INTO classes (name) VALUES (?)', class_name)
         redirect back
     end
+    
 end
