@@ -35,6 +35,8 @@ class Site < Sinatra::Base
             idToRemove = params[:studentId]
             Dbhandler.removeStudent(idToRemove)
             redirect back
+        elsif params[:action] == 'edit'
+            
         end
 
         if params[:file] != nil
@@ -86,11 +88,7 @@ class Site < Sinatra::Base
     end
 
     post '/class_change/:class' do
-        if params[:class] == 'all'
-            students = Student.get(:all, @db)
-        else
-            students = Student.student_class(params[:class], @db)
-        end
+        students = Student.student_class(params[:class], @db)
         answer = []
         
         for x in students do 
@@ -104,10 +102,5 @@ class Site < Sinatra::Base
         class_name = params[:classname]
         @db.execute('INSERT INTO classes (name) VALUES (?)', class_name)
         redirect back
-    end
-
-    post '/userimg/:id' do
-        answer = Student.checkUserImg(params[:id])
-        return answer.to_json
     end
 end
