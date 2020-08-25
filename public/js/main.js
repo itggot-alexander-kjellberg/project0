@@ -39,6 +39,8 @@ function trait_search(name_input){
         return;
     }
 
+    //AJAX
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
