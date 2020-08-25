@@ -5,6 +5,6 @@
                 option value="#{stud_class['name']}" #{stud_class['name']}
 -else
     select name="class"
-        option value="all" All
+        option value="all" name="option" All
         -for stud_class in classes
             option value="#{stud_class['name']}" #{stud_class['name']}

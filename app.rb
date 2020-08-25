@@ -103,4 +103,9 @@ class Site < Sinatra::Base
         @db.execute('INSERT INTO classes (name) VALUES (?)', class_name)
         redirect back
     end
+
+    post '/class/delete' do
+        Classes.destroy(params[:class], @db)
+        redirect back
+    end
 end
