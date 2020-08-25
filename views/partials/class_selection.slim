@@ -1,8 +1,10 @@
 -if onchange == true
     select name="class" onchange="class_change(this)"
+        option value="all" All
         -for stud_class in classes
                 option value="#{stud_class['name']}" #{stud_class['name']}
 -else
     select name="class"
+        option value="all" All
         -for stud_class in classes
             option value="#{stud_class['name']}" #{stud_class['name']}
