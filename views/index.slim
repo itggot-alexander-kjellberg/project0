@@ -21,7 +21,7 @@ div class="grid-container"
                 aside.traitParent
                 div class="container"
                     div class="container"
-                        div class="material-icons pointer" edit
+                        div class="material-icons pointer" onclick="student_add_menu('edit')" edit
                         div id="studentName" Edit traits
                     form class="removeForm" method="post" action="/student/remove"
                         input type="hidden" name="studentId" value="char-drag" id="removeId"
@@ -32,11 +32,11 @@ form.student_form.hide method="post" action="/student/add" enctype="multipart/fo
     .form-box
         i class="material-icons pointer" onclick="student_add_menu()" close
         .cover
-            input.student_add type="text" placeholder="Name" name="name"
+            input.student_add type="text" placeholder="Name" name="name" id="studentName2"
             .char_box
                 input.student_char type="text" placeholder="Character trait" name="char0" 
                 i.material-icons onclick="char_remove(this)" remove_circle_outline
-            button class="pointer add_char" onclick="trait(this);" type="button" Add trait
+            button class="pointer add_char" onclick="trait_func(this)" type="button" Add trait
             .char_box
                 p Choose class for new student:
                 ==slim :"partials/class_selection", locals: {classes: @classes, onchange: false}

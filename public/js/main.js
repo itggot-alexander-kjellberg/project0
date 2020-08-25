@@ -88,43 +88,68 @@ function studentTraitGenerator(id){
     xhttp.send();
 }
 
-function student_add_menu(action){
-    var form = document.querySelector('form.student_form');
-    form.classList.toggle('hide');
-
-    if(action == 'add'){
-        form.setAttribute('action','/student/add')
-    }else if(action == 'edit'){
-        form.setAttribute('action','/student/edit')
-    }
-}
 
 // hur kallar man på ruby/db_handler? Kan man?
 function student_remove(element) {
     studentId = element.id;
 }
 
-function trait(self){
+function trait_func(self){
     var el = document.createElement('input');
     el.classList.add('student_char');
     el.placeholder = 'Character trait'
     var i = document.querySelectorAll('input.student_char').length;
     el.setAttribute('name', `char${i}`);
-
+    
     var char_box = document.createElement('div');
     char_box.classList.add('char_box');
-
+    
     var icon = document.createElement('i');
     icon.classList.add('material-icons')
     icon.innerHTML = 'remove_circle_outline';
     icon.setAttribute('onclick', 'char_remove(this)')
-
+    
     char_box.appendChild(el)
     char_box.appendChild(icon)
-
+    
     self.parentNode.insertBefore(char_box, self);
 }
 
+function student_add_menu(action){
+    var cover = document.querySelector('.cover');
+
+    while (cover.firstChild){
+        cover.removeChild(cover.lastChild);
+    };
+
+    var form = document.querySelector('form.student_form');
+    form.classList.toggle('hide');
+
+    if(action == 'add'){
+        form.setAttribute('action','/student/add')
+    }else if(action == 'edit'){
+        form.setAttribute('action','/student/edit');
+        var name = document.querySelector(".name").innerHTML;
+        document.querySelector("#studentName2").value = name;
+        
+        var i=0;
+        var student_traits = document.querySelector(".traitParent").children.length;
+        console.log(document.querySelector(".traitParent").children.length);
+        while(i < student_traits){
+            console.log('yyyyought')           
+            i++;
+            trait_func(document.querySelector('button.add_char.pointer'));
+            // console.log(i);
+
+        }
+    
+        
+        
+        // var student_traits = document.querySelector(".traitParent").innerHTML;
+        // document.querySelector(".student_char").value = student_traits;
+
+    }
+}
 // XML HTTP request till route på servern för att kolla om rätt bild finns
 function showInfo(element) {
     var studentId = element.id;
