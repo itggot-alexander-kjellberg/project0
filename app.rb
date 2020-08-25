@@ -101,4 +101,9 @@ class Site < Sinatra::Base
         @db.execute('INSERT INTO classes (name) VALUES (?)', class_name)
         redirect back
     end
+
+    post '/userimg/:id' do
+        answer = Student.checkUserImg(params[:id])
+        return answer.to_json
+    end
 end

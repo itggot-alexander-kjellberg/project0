@@ -125,19 +125,44 @@ function trait(self){
     self.parentNode.insertBefore(char_box, self);
 }
 
-// XML HTTP request till route på servern för att kolla om rätt bild finns
 function showInfo(element) {
     var studentId = element.id;
     var name = element.innerHTML;
     var namn = document.querySelector(".name");
     namn.innerHTML = name;
-    var userImg = `url('../img/students/${studentId}.jpg')`;
-    var container = document.querySelector(".personImg");
-    container.style.backgroundImage = userImg;
+
+    var requesten = new XMLHttpRequest();
+    requesten.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var container = document.querySelector(".personImg");
+            answer = this.response;
+            if(answer == 'true') {
+                var userImg = `url('../img/students/${studentId}.jpg')`;
+            } else {
+                var userImg = `url('../img/standarduser.png')`;
+            }
+            container.style.backgroundImage = userImg;
+        };
+    };
+    requesten.open('POST' , `/userimg/${studentId}`);
+    requesten.send();
+
     var leButton = document.querySelector(".remove_student");
     leButton.setAttribute("id", studentId);
     document.querySelector("#removeId").setAttribute("value", studentId);
 }
+
+// function checkUserImg(id) {
+//     var requesten = new XMLHttpRequest();
+//     requesten.onreadystatechange = function(){
+//         if(this.readyState == 4 && this.status == 200){
+//             answer = this.response;
+//             console.log(answer);
+//         };
+//     };
+//     requesten.open('POST', `/userImg/${id}`);
+//     requesten.send();
+// }
 
 function class_change(self){
     
