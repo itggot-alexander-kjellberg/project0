@@ -76,6 +76,8 @@ class Student < Dbhandler
     def self.update(params, db)
         id = params[:id]
         name = params[:name]
+        p "############", params
+        course = params[:class]
         char = []
         
         params.each do |key, value|
@@ -86,8 +88,10 @@ class Student < Dbhandler
     
         traits = char.drop(1)
         traits.pop()
-
+        course_id = db.execute('SELECT id FROM classes WHERE name = ?', course).first['id']
         db.execute('DELETE FROM traits WHERE student_id = ?', id)
+        db.execute('UPDATE students SET name = ? WHERE id = ?', name, id)
+        db.execute('UPDATE students SET stud_class = ? WHERE id = ?', course_id, id)
 
         traits.each do |x|
             db.execute('INSERT INTO traits (name, student_id) VALUES(?,?)', x, id)
